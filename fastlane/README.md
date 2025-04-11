@@ -13,6 +13,17 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
+### release_demo
+
+```sh
+[bundle exec] fastlane release_demo
+```
+
+Empaqueta y simula subida a Artifactory
+
+----
+
+
 ## iOS
 
 ### ios test

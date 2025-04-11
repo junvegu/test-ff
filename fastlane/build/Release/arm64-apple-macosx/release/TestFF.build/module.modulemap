@@ -1,0 +1,4 @@
+module TestFF {
+    header "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/TestFF-Swift.h"
+    requires objc
+}

@@ -1,0 +1,12 @@
+{
+  "": {
+    "dependencies": "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/TestFF.d",
+    "object": "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/TestFF.o",
+    "swift-dependencies": "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/master.swiftdeps"
+  },
+  "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/Sources/TestFF/TestFF.swift": {
+    "object": "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/TestFF.swift.o",
+    "swiftmodule": "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/TestFF~partial.swiftmodule",
+    "swift-dependencies": "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/TestFF.swiftdeps"
+  }
+}

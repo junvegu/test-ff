@@ -8,3 +8,21 @@ platform :ios do
     sh("swift test --enable-code-coverage")
   end
 end
+
+
+  desc "Empaqueta y simula subida a Artifactory"
+  lane :release_demo do
+    build_dir = "build/Release"
+
+    sh "rm -rf #{build_dir}"
+    sh "swift build -c release --build-path #{build_dir}"
+
+    zip_path = "TestFF-Release.zip"
+    sh "cd #{build_dir} && zip -r ../../#{zip_path} ."
+    UI.message("📦 Librería empaquetada en #{zip_path}")
+
+    # Simular subida 
+    UI.message("🚀 Subida simulada a Artifactory: https://artifactory.ibk.com/TestFF/#{zip_path}")
+  
+    # sh "curl -u user:password -T #{zip_path} https://artifactory.ibk.com/libs-release-local/TestFF/#{zip_path}"
+  end
