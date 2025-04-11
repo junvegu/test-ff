@@ -5,22 +5,22 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000162">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.00016">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: rm -rf build/Release" time="0.004076">
+      <testcase classname="fastlane.lanes" name="1: rm -rf build/Release" time="0.006132">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: swift build -c release --build-path build/Release" time="1.678727">
+      <testcase classname="fastlane.lanes" name="2: swift build -c release --build-path build/Release" time="1.77767">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: cd build/Release &amp;&amp; zip -r ../../TestFF-Release.zip ." time="0.023652">
+      <testcase classname="fastlane.lanes" name="3: cd build/Release &amp;&amp; zip -r ../../TestFF-Release.zip ." time="0.024533">
         
       </testcase>
     
