@@ -24,15 +24,16 @@ jobs:
       - name: 📦 Install dependencies
         run: bundle install
 
-      - name: ✅ Run Fastlane tests
+      - name: ✅ Run Fastlane tests for SPM
         run: bundle exec fastlane test
 
       - name: 💬 Comentar resultado en el PR
-        if: success() || failure()
+        if: always()
         run: |
-          comment_body="✅ Tests completados exitosamente 🎉"
-          if [ ${{ job.status }} != "success" ]; then
-            comment_body="❌ Tests fallaron. Revisa los logs de GitHub Actions para más detalles."
+          if [ "${{ job.status }}" == "success" ]; then
+            comment_body="✅ Tests completados exitosamente 🎉"
+          else
+            comment_body="❌ Tests fallaron. [Ver detalles del log](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
           fi
 
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
