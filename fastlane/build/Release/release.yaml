@@ -1,0 +1,112 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "PackageStructure": ["<PackageStructure>"]
+  "TestFF-arm64-apple-macosx15.0-release.module": ["<TestFF-arm64-apple-macosx15.0-release.module>"]
+  "TestFFPackageTests-arm64-apple-macosx15.0-release.module": ["<TestFFPackageTests-arm64-apple-macosx15.0-release.module>"]
+  "TestFFPackageTests-arm64-apple-macosx15.0-release.test": ["<TestFFPackageTests-arm64-apple-macosx15.0-release.test>"]
+  "TestFFTests-arm64-apple-macosx15.0-release.module": ["<TestFFTests-arm64-apple-macosx15.0-release.module>"]
+  "main": ["<TestFF-arm64-apple-macosx15.0-release.module>"]
+  "test": ["<TestFF-arm64-apple-macosx15.0-release.module>","<TestFFPackageTests-arm64-apple-macosx15.0-release.test>","<TestFFTests-arm64-apple-macosx15.0-release.module>"]
+default: "main"
+nodes:
+  "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/Sources/TestFF/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+  "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/Tests/TestFFTests/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+commands:
+  "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/Sources/TestFF/TestFF.swift"]
+    outputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/sources"]
+    description: "Write auxiliary file /Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/sources"
+
+  "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.derived/runner.swift"]
+    outputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.build/sources"]
+    description: "Write auxiliary file /Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.build/sources"
+
+  "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.derived/runner.swift":
+    tool: test-entry-point-tool
+    inputs: []
+    outputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.derived/runner.swift"]
+
+  "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.product/Objects.LinkFileList":
+    tool: write-auxiliary-file
+    inputs: ["<link-file-list>","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/TestFF.swift.o","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.build/runner.swift.o","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFTests.build/TestFFTests.swift.o"]
+    outputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.product/Objects.LinkFileList"]
+    description: "Write auxiliary file /Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.product/Objects.LinkFileList"
+
+  "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFTests.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/Tests/TestFFTests/TestFFTests.swift"]
+    outputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFTests.build/sources"]
+    description: "Write auxiliary file /Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFTests.build/sources"
+
+  "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"]
+    outputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+
+  "<TestFF-arm64-apple-macosx15.0-release.module>":
+    tool: phony
+    inputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/TestFF.swift.o","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules/TestFF.swiftmodule"]
+    outputs: ["<TestFF-arm64-apple-macosx15.0-release.module>"]
+
+  "<TestFFPackageTests-arm64-apple-macosx15.0-release.module>":
+    tool: phony
+    inputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.build/runner.swift.o","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules/TestFFPackageTests.swiftmodule"]
+    outputs: ["<TestFFPackageTests-arm64-apple-macosx15.0-release.module>"]
+
+  "<TestFFPackageTests-arm64-apple-macosx15.0-release.test>":
+    tool: phony
+    inputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.xctest/Contents/MacOS/TestFFPackageTests"]
+    outputs: ["<TestFFPackageTests-arm64-apple-macosx15.0-release.test>"]
+
+  "<TestFFTests-arm64-apple-macosx15.0-release.module>":
+    tool: phony
+    inputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFTests.build/TestFFTests.swift.o","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules/TestFFTests.swiftmodule"]
+    outputs: ["<TestFFTests-arm64-apple-macosx15.0-release.module>"]
+
+  "C.TestFF-arm64-apple-macosx15.0-release.module":
+    tool: shell
+    inputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/Sources/TestFF/TestFF.swift","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/sources"]
+    outputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/TestFF.swift.o","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules/TestFF.swiftmodule"]
+    description: "Compiling Swift Module 'TestFF' (1 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","TestFF","-emit-dependencies","-emit-module","-emit-module-path","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules/TestFF.swiftmodule","-output-file-map","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/output-file-map.json","-parse-as-library","-whole-module-optimization","-num-threads","11","-c","@/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/sources","-I","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules","-target","arm64-apple-macosx10.13","-O","-j11","-DSWIFT_PACKAGE","-module-cache-path","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/ModuleCache","-parseable-output","-parse-as-library","-emit-objc-header","-emit-objc-header-path","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/TestFF-Swift.h","-swift-version","6","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","testff"]
+
+  "C.TestFFPackageTests-arm64-apple-macosx15.0-release.module":
+    tool: shell
+    inputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.derived/runner.swift","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules/TestFFTests.swiftmodule","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.build/sources"]
+    outputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.build/runner.swift.o","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules/TestFFPackageTests.swiftmodule"]
+    description: "Compiling Swift Module 'TestFFPackageTests' (1 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","TestFFPackageTests","-emit-dependencies","-emit-module","-emit-module-path","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules/TestFFPackageTests.swiftmodule","-output-file-map","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.build/output-file-map.json","-parse-as-library","-whole-module-optimization","-num-threads","11","-c","@/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.build/sources","-I","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules","-target","arm64-apple-macosx10.13","-O","-enable-testing","-Xfrontend","-enable-cross-import-overlays","-j11","-DSWIFT_PACKAGE","-module-cache-path","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/ModuleCache","-parseable-output","-parse-as-library","-emit-objc-header","-emit-objc-header-path","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.build/TestFFPackageTests-Swift.h","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","testff"]
+
+  "C.TestFFPackageTests-arm64-apple-macosx15.0-release.test":
+    tool: shell
+    inputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFF.build/TestFF.swift.o","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.build/runner.swift.o","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFTests.build/TestFFTests.swift.o","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.product/Objects.LinkFileList"]
+    outputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.xctest/Contents/MacOS/TestFFPackageTests"]
+    description: "Linking ./build/Release/arm64-apple-macosx/release/TestFFPackageTests.xctest/Contents/MacOS/TestFFPackageTests"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-L","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release","-o","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.xctest/Contents/MacOS/TestFFPackageTests","-module-name","TestFFPackageTests","-Xlinker","-no_warn_duplicate_libraries","-Xlinker","-bundle","-Xlinker","-dead_strip","-Xlinker","-rpath","-Xlinker","@loader_path/../../../","@/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFPackageTests.product/Objects.LinkFileList","-target","arm64-apple-macosx14.0","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g"]
+
+  "C.TestFFTests-arm64-apple-macosx15.0-release.module":
+    tool: shell
+    inputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/Tests/TestFFTests/TestFFTests.swift","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules/TestFF.swiftmodule","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFTests.build/sources"]
+    outputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFTests.build/TestFFTests.swift.o","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules/TestFFTests.swiftmodule"]
+    description: "Compiling Swift Module 'TestFFTests' (1 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","TestFFTests","-emit-dependencies","-emit-module","-emit-module-path","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules/TestFFTests.swiftmodule","-output-file-map","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFTests.build/output-file-map.json","-parse-as-library","-whole-module-optimization","-num-threads","11","-c","@/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/TestFFTests.build/sources","-I","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/Modules","-target","arm64-apple-macosx14.0","-index-store-path","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/index/store","-O","-enable-testing","-Xfrontend","-enable-cross-import-overlays","-j11","-DSWIFT_PACKAGE","-module-cache-path","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/fastlane/build/Release/arm64-apple-macosx/release/ModuleCache","-parseable-output","-parse-as-library","-swift-version","6","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","testff"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/Sources/TestFF/","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/Tests/TestFFTests/","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/Package.swift","/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+

@@ -1,24 +1,28 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
+# fastlane/Fastfile
 
 default_platform(:ios)
 
 platform :ios do
-  desc "Corre los tests de la librería"
+  desc "Corre los tests del Package (SPM)"
   lane :test do
-    run_tests(
-      scheme: "MyLibrary",         # Asegúrate que este scheme existe
-      clean: true,
-      device: "iPhone 14"
-    )
+    sh("swift test --enable-code-coverage")
   end
 end
+
+
+  desc "Empaqueta y simula subida a Artifactory"
+  lane :release_demo do
+    build_dir = "build/Release"
+
+    sh "rm -rf #{build_dir}"
+    sh "swift build -c release --build-path #{build_dir}"
+
+    zip_path = "TestFF-Release.zip"
+    sh "cd #{build_dir} && zip -r ../../#{zip_path} ."
+    UI.message("📦 Librería empaquetada en #{zip_path}")
+
+    # Simular subida 
+    UI.message("🚀 Subida simulada a Artifactory: https://artifactory.ibk.com/TestFF/#{zip_path}")
+  
+    # sh "curl -u user:password -T #{zip_path} https://artifactory.ibk.com/libs-release-local/TestFF/#{zip_path}"
+  end

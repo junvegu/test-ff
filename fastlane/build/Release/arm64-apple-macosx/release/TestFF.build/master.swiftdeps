@@ -1,0 +1,6 @@
+version: "Apple Swift version 6.1 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)"
+options: "db8336898a7c611cb6b673bf76d9e3f6a6ad35f75e12be439aeb8a9a48bb9d3c"
+build_start_time: [1744404961, 707960000]
+build_end_time: [1744404961, 789869000]
+inputs:
+  "/Users/juniorquevedogutierrez/Documents/ios-projects/TestFF/Sources/TestFF/TestFF.swift": [1744403098, 425595836]
