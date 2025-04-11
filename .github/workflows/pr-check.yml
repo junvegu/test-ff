@@ -1,0 +1,42 @@
+name: IBK Check PR
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  check-pr:
+    if: github.event.comment.body == 'ibk check pr'
+    runs-on: macos-latest
+
+    steps:
+      - name: 🧾 Checkout PR
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.issue.pull_request.head.ref }}
+          repository: ${{ github.event.issue.pull_request.head.repo.full_name }}
+
+      - name: 🔧 Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+
+      - name: 📦 Install dependencies
+        run: bundle install
+
+      - name: ✅ Run Fastlane tests
+        run: bundle exec fastlane test
+
+      - name: 💬 Comentar resultado en el PR
+        if: success() || failure()
+        run: |
+          comment_body="✅ Tests completados exitosamente 🎉"
+          if [ ${{ job.status }} != "success" ]; then
+            comment_body="❌ Tests fallaron. Revisa los logs de GitHub Actions para más detalles."
+          fi
+
+          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            -d "{\"body\": \"$comment_body\"}" \
+            ${{ github.event.issue.comments_url }}
