@@ -1,8 +1,10 @@
+# fastlane/Fastfile
+
 default_platform(:ios)
 
 platform :ios do
-  desc "Run Swift tests via swift test"
+  desc "Corre los tests del Package (SPM)"
   lane :test do
-    sh("swift test --parallel")
+    sh("swift test --enable-code-coverage")
   end
 end

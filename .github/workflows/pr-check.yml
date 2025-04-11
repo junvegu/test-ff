@@ -16,6 +16,15 @@ jobs:
           ref: ${{ github.event.issue.pull_request.head.ref }}
           repository: ${{ github.event.issue.pull_request.head.repo.full_name }}
 
+      - name: 💬 Saludo inicial
+        run: |
+          comment_body="🎉 ¡Hola! Gracias por tu comentario 'ibk check pr'. Estamos corriendo tus pruebas ahora mismo 🧪, ¡desea suerte! 🍀"
+          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -X POST \
+            -d "{\"body\": \"$comment_body\"}" \
+            ${{ github.event.issue.comments_url }}
+
       - name: 🔧 Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -31,9 +40,9 @@ jobs:
         if: always()
         run: |
           if [ "${{ job.status }}" == "success" ]; then
-            comment_body="✅ Tests completados exitosamente 🎉"
+            comment_body="✅ ¡Éxito! Las pruebas pasaron correctamente. Puedes hacer merge con confianza 🚀"
           else
-            comment_body="❌ Tests fallaron. [Ver detalles del log](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+            comment_body="❌ Algo salió mal. Revisa los errores aquí: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           fi
 
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
