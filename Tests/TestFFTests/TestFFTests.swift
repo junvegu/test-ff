@@ -3,6 +3,9 @@ import XCTest
 
 final class TestFFTests: XCTestCase {
     func testExample() throws {
+        
+        
+        XCTAssertTrue(2==2)
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest
 
