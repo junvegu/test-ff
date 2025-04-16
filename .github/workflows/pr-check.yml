@@ -1,5 +1,9 @@
 name: IBK Check PR
-
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+  
 on:
   pull_request:
     types: [opened, synchronize, reopened]
