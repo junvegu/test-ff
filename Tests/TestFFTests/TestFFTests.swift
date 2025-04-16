@@ -19,6 +19,7 @@ final class TestFFTests: XCTestCase {
         
         
         XCTAssertTrue(5-5==0)
+        XCTAssertTrue(5-2==3)
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest
 
