@@ -59,10 +59,9 @@ jobs:
           COVERAGE_LINE=$(xcrun llvm-cov export .build/debug/TestFFPackageTests.xctest/Contents/MacOS/TestFFPackageTests -instr-profile .build/debug/codecov/default.profdata | grep -A 1 '"data"' | tail -1)
           COVERAGE_PERCENT=$(echo "$COVERAGE_LINE" | awk -F',' '{printf "%.2f", $4*100}')
           echo "coverage=$COVERAGE_PERCENT" >> "$GITHUB_OUTPUT"
-
-
+      
       - name: 💬 Comentar resultado en el PR
-        if: always() && github.event.comment.body == 'ibk check pr'
+        if: always()
         run: |
           if [ "${{ job.status }}" == "success" ]; then
             coverage="${{ steps.coverage.outputs.coverage }}"
