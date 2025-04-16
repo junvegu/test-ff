@@ -1,5 +1,9 @@
 name: IBK Check PR
-
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+  
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -23,12 +27,20 @@ jobs:
 
       - name: 💬 Saludo inicial
         run: |
-          comment_body="🎉 ¡Hola! Gracias por tu comentario 'ibk check pr'. Estamos corriendo tus pruebas ahora mismo 🧪, ¡desea suerte! 🍀"
+          comment_body="🎉 ¡Hola! Gracias por usar IBK-CI. Estamos corriendo tus pruebas ahora mismo 🧪, ¡desea suerte! 🍀"
+      
+          if [[ "${{ github.event_name }}" == "issue_comment" ]]; then
+            COMMENTS_URL="${{ github.event.issue.comments_url }}"
+          else
+            COMMENTS_URL="https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments"
+          fi
+      
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -X POST \
-            -d "{\"body\": \"$comment_body\"}" \
-            ${{ github.event.issue.comments_url }}
+               -H "Content-Type: application/json" \
+               -X POST \
+               -d "{\"body\": \"$comment_body\"}" \
+               "$COMMENTS_URL"
+
 
       - name: 🔧 Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -46,18 +58,26 @@ jobs:
         run: |
           COVERAGE_LINE=$(xcrun llvm-cov export .build/debug/TestFFPackageTests.xctest/Contents/MacOS/TestFFPackageTests -instr-profile .build/debug/codecov/default.profdata | grep -A 1 '"data"' | tail -1)
           COVERAGE_PERCENT=$(echo "$COVERAGE_LINE" | awk -F',' '{printf "%.2f", $4*100}')
-          echo "coverage=$COVERAGE_PERCENT" >> $GITHUB_OUTPUT
-
+          echo "coverage=$COVERAGE_PERCENT" >> "$GITHUB_OUTPUT"
+      
       - name: 💬 Comentar resultado en el PR
-        if: always() && github.event.comment.body == 'ibk check pr'
+        if: always()
         run: |
+          if [ "${{ github.event.issue.comments_url }}" == "" ]; then
+            echo "🔇 comments_url no está disponible, saltando comentario"
+            exit 0
+          fi
+      
           if [ "${{ job.status }}" == "success" ]; then
-            comment_body="✅ ¡Éxito! Las pruebas pasaron correctamente. Cobertura estimada: ${{ steps.coverage.outputs.coverage }}%. Puedes hacer merge con confianza 🚀"
+            coverage="${{ steps.coverage.outputs.coverage }}"
+            comment_body="✅ ¡Éxito! Las pruebas pasaron correctamente. Cobertura estimada: ${coverage}%. Puedes hacer merge con confianza 🚀"
           else
             comment_body="❌ Algo salió mal. Revisa los errores aquí: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           fi
+      
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
             -X POST \
             -d "{\"body\": \"$comment_body\"}" \
-            ${{ github.event.issue.comments_url }}
+            "${{ github.event.issue.comments_url }}"
+
