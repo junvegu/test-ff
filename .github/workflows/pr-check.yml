@@ -7,7 +7,7 @@ on:
 jobs:
   check-pr:
     if: github.event.comment.body == 'ibk check pr'
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
       - name: 🧾 Checkout PR
@@ -25,8 +25,8 @@ jobs:
             -d "{\"body\": \"$comment_body\"}" \
             ${{ github.event.issue.comments_url }}
 
-      - name: 🔄 Select Xcode 15.3 (Swift 6.1)
-        run: sudo xcode-select -s /Applications/Xcode_15.3.app
+      - name: 🔄 Select Xcode 16.3 (Swift 6.1)
+        run: sudo xcode-select -s /Applications/Xcode_16.3.app
 
       - name: 🔧 Set up Ruby
         uses: ruby/setup-ruby@v1
