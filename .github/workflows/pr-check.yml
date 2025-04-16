@@ -24,11 +24,19 @@ jobs:
       - name: 💬 Saludo inicial
         run: |
           comment_body="🎉 ¡Hola! Gracias por tu comentario 'ibk check pr'. Estamos corriendo tus pruebas ahora mismo 🧪, ¡desea suerte! 🍀"
+      
+          if [[ "${{ github.event_name }}" == "issue_comment" ]]; then
+            COMMENTS_URL="${{ github.event.issue.comments_url }}"
+          else
+            COMMENTS_URL="https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments"
+          fi
+      
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -X POST \
-            -d "{\"body\": \"$comment_body\"}" \
-            ${{ github.event.issue.comments_url }}
+               -H "Content-Type: application/json" \
+               -X POST \
+               -d "{\"body\": \"$comment_body\"}" \
+               "$COMMENTS_URL"
+
 
       - name: 🔧 Set up Ruby
         uses: ruby/setup-ruby@v1
