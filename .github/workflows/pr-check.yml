@@ -21,13 +21,13 @@ jobs:
       - name: 🔄 Select Xcode 16.3 (Swift 6.1)
         run: sudo xcode-select -s /Applications/Xcode_16.3.app
 
-      - name: 💬 Saludo inicial (solo por comentario)
-        if: github.event.comment.body == 'ibk check pr'
+      - name: 💬 Saludo inicial
         run: |
+          comment_body="🎉 ¡Hola! Gracias por tu comentario 'ibk check pr'. Estamos corriendo tus pruebas ahora mismo 🧪, ¡desea suerte! 🍀"
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
             -X POST \
-            -d '{"body": "🎉 ¡Hola! Gracias por tu comentario `ibk check pr`. Estamos corriendo tus pruebas ahora mismo 🧪. ¡Suerte! 🍀"}' \
+            -d "{\"body\": \"$comment_body\"}" \
             ${{ github.event.issue.comments_url }}
 
       - name: 🔧 Set up Ruby
