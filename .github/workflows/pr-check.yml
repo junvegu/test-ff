@@ -9,7 +9,7 @@ on:
 jobs:
   check-pr:
     if: github.event_name == 'pull_request' || github.event.comment.body == 'ibk check pr'
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
       - name: 🧾 Checkout PR
@@ -17,6 +17,9 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref || github.event.issue.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name || github.event.issue.pull_request.head.repo.full_name }}
+          
+      - name: 🔄 Select Xcode 15.3 (Swift 6.1)
+        run: sudo xcode-select -s /Applications/Xcode_15.3.app
 
       - name: 💬 Saludo inicial (solo por comentario)
         if: github.event.comment.body == 'ibk check pr'
